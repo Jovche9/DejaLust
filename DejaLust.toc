@@ -1,0 +1,11 @@
+## Interface: 70000
+## Title: |cff673AB7DejaLust
+## Notes: Ping it while lust is up.
+## Version: 1.0
+## Author: Jovche
+## SavedVariables: DejaLustSettings
+## DefaultState: enabled
+##
+
+defaults.lua
+core.lua
