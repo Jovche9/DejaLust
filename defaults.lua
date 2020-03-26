@@ -14,21 +14,31 @@ local songs = {
         ["name"] = "Dejavu",
         ["file"] = "dejavu.mp3",
         ["enabled"] = true,
+        ["default"] = true,
     },
     {
         ["name"] = "Gas Gas Gas!",
         ["file"] = "gasgasgas.mp3",
         ["enabled"] = true,
+        ["default"] = true,
     },
     {
         ["name"] = "Night of Fire",
         ["file"] = "nightoffire.mp3",
         ["enabled"] = true,
+        ["default"] = true,
     },
     {
         ["name"] = "Brainpower",
         ["file"] = "brainpower.mp3",
         ["enabled"] = true,
+        ["default"] = true,
+    },
+    {
+        ["name"] = "Running in the 90s",
+        ["file"] = "running_in_the_90s.mp3",
+        ["enabled"] = true,
+        ["default"] = true,
     }
 }
 
