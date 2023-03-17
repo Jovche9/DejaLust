@@ -1,14 +1,14 @@
 ## Interface: 70000
-## Title: |cff673AB7DejaLust
+## Title: DejaLust
 ## Notes: Ping it while lust is up.
-## Version: 1.0
+## Version: 1.02
 ## Author: Jovche
 ## SavedVariables: DejaLustSettings
 ## DefaultState: enabled
 ##
 
 #@no-lib-strip@
-Libs\AceGUI-3.0\AceGUI-3.0.xml
+embeds.xml
 #@end-no-lib-strip@
 
 defaults.lua

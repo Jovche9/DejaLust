@@ -1,4 +1,3 @@
-
 local AceGUI = LibStub("AceGUI-3.0")
 
 local isPlaying = false
@@ -40,7 +39,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
     for i = 1, 40 do
         name, _, _, _, _, _, _, _, _, id = UnitBuff("Player", i)
         if not name then break end
-        if DejaLustSettings.buffs[name] ~= nil then 
+        if DejaLustSettings.buffs[name] ~= nil then
             isBuffPresent = true
             break
         end
@@ -79,7 +78,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
         end
         PlayMusic("Interface\\AddOns\\DejaLust\\songs\\" .. song)
      elseif isPlaying and isBuffPresent == false then
-        -- Reset play flag 
+        -- Reset play flag
         isPlaying = false
 
         -- Reset cvar values to what they were prior to playing
@@ -121,7 +120,7 @@ function DrawSongsSection(container)
     addSongNameEditBox = AceGUI:Create("EditBox")
     addSongNameEditBox:SetLabel("Song name")
     addSongNameEditBox:SetRelativeWidth(0.4)
-    addSongNameEditBox:SetCallback("OnTextChanged", function(editBox) 
+    addSongNameEditBox:SetCallback("OnTextChanged", function(editBox)
         addSongButton:SetDisabled(editBox:GetText() == nil or editBox:GetText() == '' or addFileNameEditBox:GetText() == nil or addFileNameEditBox:GetText() == '')
         editBox:DisableButton(true)
     end)
@@ -129,7 +128,7 @@ function DrawSongsSection(container)
     addFileNameEditBox = AceGUI:Create("EditBox")
     addFileNameEditBox:SetLabel("File name (include extension)")
     addFileNameEditBox:SetRelativeWidth(0.4)
-    addFileNameEditBox:SetCallback("OnTextChanged", function(editBox) 
+    addFileNameEditBox:SetCallback("OnTextChanged", function(editBox)
         addSongButton:SetDisabled(editBox:GetText() == nil or editBox:GetText() == '' or addSongNameEditBox:GetText() == nil or addSongNameEditBox:GetText() == '')
         editBox:DisableButton(true)
     end)
@@ -138,7 +137,7 @@ function DrawSongsSection(container)
     addSongButton:SetText("Add")
     addSongButton:SetRelativeWidth(0.2)
     addSongButton:SetDisabled(true)
-    addSongButton:SetCallback("OnClick", function() 
+    addSongButton:SetCallback("OnClick", function()
         DejaLustSettings.songs[#DejaLustSettings.songs+1] = {
             ["name"] = addSongNameEditBox:GetText(),
             ["file"] = addFileNameEditBox:GetText(),
@@ -174,7 +173,7 @@ function DrawSongsSection(container)
         checkBox:SetType("checkbox")
         checkBox:SetLabel(song.name)
         checkBox:SetValue(song.enabled)
-        checkBox:SetCallback("OnValueChanged", function() 
+        checkBox:SetCallback("OnValueChanged", function()
             DejaLustSettings.songs[key].enabled = checkBox:GetValue()
         end)
         checkBox:SetRelativeWidth(0.4)
@@ -187,7 +186,7 @@ function DrawSongsSection(container)
         removeButton:SetText("Remove")
         removeButton:SetRelativeWidth(0.2)
         removeButton:SetDisabled(song.default)
-        removeButton:SetCallback("OnClick", function() 
+        removeButton:SetCallback("OnClick", function()
             DejaLustSettings.songs[key] = nil
             container:ReleaseChildren()
             DrawSongsSection(container)
@@ -200,7 +199,7 @@ function DrawSongsSection(container)
     container:AddChildren(scrollContainer)
 end
 
-function DrawAdditionalOptionsSection(container) 
+function DrawAdditionalOptionsSection(container)
 
     local optionsGroup = AceGUI:Create("InlineGroup")
     optionsGroup:SetTitle("Additional settings")
@@ -212,7 +211,7 @@ function DrawAdditionalOptionsSection(container)
     volumeSlider:SetValue(DejaLustSettings.adjustedVolume)
     volumeSlider:SetDisabled(not DejaLustSettings.adjustVolume)
     volumeSlider:SetIsPercent(true)
-    volumeSlider:SetCallback("OnValueChanged", function() 
+    volumeSlider:SetCallback("OnValueChanged", function()
         DejaLustSettings.adjustedVolume = volumeSlider:GetValue()
     end)
 
@@ -220,7 +219,7 @@ function DrawAdditionalOptionsSection(container)
     adjustVolumeCheckbox:SetLabel("Adjust volume on play")
     adjustVolumeCheckbox:SetValue(DejaLustSettings.adjustVolume)
     adjustVolumeCheckbox:SetRelativeWidth(1.0)
-    adjustVolumeCheckbox:SetCallback("OnValueChanged", function() 
+    adjustVolumeCheckbox:SetCallback("OnValueChanged", function()
         DejaLustSettings.adjustVolume = adjustVolumeCheckbox:GetValue()
         volumeSlider:SetDisabled(not DejaLustSettings.adjustVolume)
     end)
@@ -230,7 +229,7 @@ function DrawAdditionalOptionsSection(container)
     enableTrollSong:SetDescription("1/100 chance to play a troll song.")
     enableTrollSong:SetValue(DejaLustSettings.enableTroll)
     enableTrollSong:SetRelativeWidth(1.0)
-    enableTrollSong:SetCallback("OnValueChanged", function() 
+    enableTrollSong:SetCallback("OnValueChanged", function()
         DejaLustSettings.enableTroll = enableTrollSong:GetValue()
     end)
 
@@ -255,11 +254,11 @@ function DrawBuffsSection(container)
     local addBuffEditBox = AceGUI:Create("EditBox")
     addBuffEditBox:SetLabel("Add buff to track")
     addBuffEditBox:SetRelativeWidth(1.0)
-    addBuffEditBox:SetCallback("OnTextChanged", function(editBox) 
+    addBuffEditBox:SetCallback("OnTextChanged", function(editBox)
         text = editBox:GetText()
         editBox:DisableButton(text == nil or text == '')
     end)
-    addBuffEditBox:SetCallback("OnEnterPressed", function(editBox) 
+    addBuffEditBox:SetCallback("OnEnterPressed", function(editBox)
         text = editBox:GetText()
         DejaLustSettings.buffs[text] = true
         container:ReleaseChildren()
@@ -277,7 +276,7 @@ function DrawBuffsSection(container)
         removeButton:SetText("Remove")
         removeButton:SetRelativeWidth(0.3)
         buffsGroup:AddChild(removeButton)
-        removeButton:SetCallback("OnClick", function() 
+        removeButton:SetCallback("OnClick", function()
             DejaLustSettings.buffs[buff] = nil
             container:ReleaseChildren()
             DrawBuffsSection(container)
@@ -300,18 +299,18 @@ local function SelectGroup(container, event, group)
 end
 
 function ShowConfig()
-    if configFrame ~= nil then 
+    if configFrame ~= nil then
         return
     end
 
     -- Create a container frame
     configFrame = AceGUI:Create("Frame")
     configFrame:SetCallback("OnClose",function(widget)
-     AceGUI:Release(widget) 
+     AceGUI:Release(widget)
      configFrame = nil
     end)
     configFrame:SetCallback("OnEscapePressed",function(widget)
-     AceGUI:Release(widget) 
+     AceGUI:Release(widget)
      configFrame = nil
     end)
     configFrame:SetTitle("DejaLust config")
@@ -330,7 +329,7 @@ function ShowConfig()
     tabGroup:SelectTab("songs")
     -- add to the frame container
     configFrame:AddChildren(tabGroup)
-end 
+end
 
 ---------------------------------------------------------
 -- Slash commands
@@ -341,4 +340,3 @@ SLASH_DEJALUST1 = "/dejalust";
 function SlashCmdList.DEJALUST(msg)
    ShowConfig()
 end
-
