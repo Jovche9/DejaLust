@@ -1,7 +1,7 @@
-## Interface: 70000
+## Interface: 100100
 ## Title: DejaLust
 ## Notes: Ping it while lust is up.
-## Version: 1.02
+## Version: 1.03
 ## Author: Jovche
 ## SavedVariables: DejaLustSettings
 ## IconTexture: Interface\AddOns\DejaLust\icon.blp
