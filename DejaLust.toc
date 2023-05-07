@@ -4,6 +4,8 @@
 ## Version: 1.02
 ## Author: Jovche
 ## SavedVariables: DejaLustSettings
+## IconTexture: Interface\AddOns\DejaLust\icon.blp
+## AddonCompartmentFunc: ToggleConfig
 ## DefaultState: enabled
 ##
 

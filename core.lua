@@ -298,6 +298,14 @@ local function SelectGroup(container, event, group)
    end
 end
 
+function ToggleConfig()
+  if configFrame then
+    CloseConfig()
+  else
+    ShowConfig()
+  end
+end
+
 function ShowConfig()
     if configFrame ~= nil then
         return
@@ -329,6 +337,10 @@ function ShowConfig()
     tabGroup:SelectTab("songs")
     -- add to the frame container
     configFrame:AddChildren(tabGroup)
+end
+
+function CloseConfig()
+  configFrame = nil
 end
 
 ---------------------------------------------------------
