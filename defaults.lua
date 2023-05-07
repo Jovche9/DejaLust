@@ -5,6 +5,7 @@ local buffs = {
     ["Ancient Hysteria"] = true,
     ["Primal Rage"] = true,
     ["Netherwinds"] = true,
+    ["Fury of the Aspects"] = true,
     ["Drums of Rage"] = true,
     ["Drums of Fury"] = true,
 }
@@ -42,6 +43,7 @@ local songs = {
     }
 }
 
+
 local frame = CreateFrame("Frame");
 frame:SetScript("OnEvent", function(self, event, ...)
   if event == "PLAYER_LOGIN" then
@@ -52,7 +54,13 @@ frame:SetScript("OnEvent", function(self, event, ...)
         ["adjustVolume"] = false,
         ["adjustedVolume"] = 1.0,
         ["enableTroll"] = true,
+        ["evokerMigration"] = true,
       }
+    elseif DejaLustSettings.evokerMigration ~= true and DejaLustSettings.buffs["Fury of the Aspects"] == nil then
+      DejaLustSettings.buffs["Fury of the Aspects"] = true
+      DejaLustSettings.evokerMigration = true
+    else
+      DejaLustSettings.evokerMigration = true
     end
   end
 end)
